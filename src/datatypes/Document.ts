@@ -1,0 +1,1 @@
+export type Document = { name: string, path: string[] };

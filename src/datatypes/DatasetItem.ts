@@ -1,0 +1,1 @@
+export type DatasetItem = { name: string, lastModified: string };
