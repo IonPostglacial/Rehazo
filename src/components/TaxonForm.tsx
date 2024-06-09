@@ -1,4 +1,4 @@
-import { TaxonData } from "../datatypes/TaxonData";
+import { TaxonData } from "../model_views/TaxonData";
 
 function TaxonForm(props: {taxonData: TaxonData}) {
     return (

@@ -4,10 +4,10 @@ import { faBars, faClose, faFileExport, faFileImport, faHome, faPrint, faSave } 
 import PopoverMenu from "./PopoverMenu";
 import PopoverMenuItem from "./PopoverMenuItem";
 import UploadButton from "./UploadButton";
-import { DatasetItem } from "../datatypes/DatasetItem";
+import { DatasetItem } from "../model_views/DatasetItem";
 
-function importFile(_f: File) {
-    alert("import");
+function importFile(f: File) {
+    alert("import: " + f.name);
 }
 
 export default function MainToolbar(props: { datasets: DatasetItem[], currentDatasetName: string }) {

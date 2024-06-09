@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { DatasetItem } from "../datatypes/DatasetItem";
+import { DatasetItem } from "../model_views/DatasetItem";
 
 
 type RootData = { datasets: DatasetItem[] };

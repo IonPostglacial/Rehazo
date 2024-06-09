@@ -1,4 +1,4 @@
-import { DescriptorIconData } from "../datatypes/DescriptorIconData";
+import { DescriptorIconData } from "../model_views/DescriptorIconData";
 
 function IconMenu(props: { descriptors: DescriptorIconData[] }) {
     return (

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Picture } from "../datatypes/Picture";
+import { Picture } from "../model_views/Picture";
 import { faArrowLeft, faArrowRight, faFileLines, faPlus, faUpload } from "@fortawesome/free-solid-svg-icons";
 import VBox from "./VBox";
 import HBox from "./HBox";

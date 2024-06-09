@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HBox from "./HBox";
 import VBox from "./VBox";
 import { faMinus, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Document } from "../datatypes/Document";
+import { Document } from "../model_views/Document";
 
 
 

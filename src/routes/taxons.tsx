@@ -2,11 +2,11 @@ import { useLoaderData } from "react-router-dom";
 import HBox from "../components/HBox";
 import MainToolbar from "../components/MainToolbar";
 import VBox from "../components/VBox";
-import { DatasetItem } from "../datatypes/DatasetItem";
+import { DatasetItem } from "../model_views/DatasetItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faHome, faMagnifyingGlass, faSearch } from "@fortawesome/free-solid-svg-icons";
 import TreeMenu from "../components/TreeMenu";
-import { Document } from "../datatypes/Document";
+import { Document } from "../model_views/Document";
 import Navbar from "../components/Navbar";
 import PictureBox from "../components/PictureBox";
 import TaxonForm from "../components/TaxonForm";
@@ -14,13 +14,13 @@ import BookInfoSection from "../components/BookInfoSection";
 import BreadCrumbs from "../components/BreadCrumbs";
 import IconMenu from "../components/IconMenu";
 import TaxonSummary from "../components/TaxonSummary";
-import { TaxonData } from "../datatypes/TaxonData";
-import { ViewMenuData } from "../datatypes/ViewMenuData";
-import { BreadCrumbData } from "../datatypes/BreadCrumbData";
-import { BookInfo } from "../datatypes/BookInfo";
-import { Picture } from "../datatypes/Picture";
-import { DescriptorIconData } from "../datatypes/DescriptorIconData";
-import { TaxonSummarySection } from "../datatypes/TaxonSummarySection";
+import { TaxonData } from "../model_views/TaxonData";
+import { ViewMenuData } from "../model_views/ViewMenuData";
+import { BreadCrumbData } from "../model_views/BreadCrumbData";
+import { BookInfo } from "../model_views/BookInfo";
+import { Picture } from "../model_views/Picture";
+import { DescriptorIconData } from "../model_views/DescriptorIconData";
+import { TaxonSummarySection } from "../model_views/TaxonSummarySection";
 
 type TaxonViewData = { 
     currentDatasetName: string, 

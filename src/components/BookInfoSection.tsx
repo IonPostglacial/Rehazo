@@ -1,4 +1,4 @@
-import { BookInfo } from "../datatypes/BookInfo";
+import { BookInfo } from "../model_views/BookInfo";
 
 function BookInfoSection(props: {bookinfo: BookInfo }) {
     return (

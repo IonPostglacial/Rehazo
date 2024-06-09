@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BreadCrumbData } from "../datatypes/BreadCrumbData";
+import { BreadCrumbData } from "../model_views/BreadCrumbData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 

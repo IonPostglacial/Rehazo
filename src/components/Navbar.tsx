@@ -1,5 +1,5 @@
-import { BreadCrumbData } from "../datatypes/BreadCrumbData";
-import { ViewMenuData } from "../datatypes/ViewMenuData";
+import { BreadCrumbData } from "../model_views/BreadCrumbData";
+import { ViewMenuData } from "../model_views/ViewMenuData";
 import BreadCrumbs from "./BreadCrumbs";
 import PopoverMenu from "./PopoverMenu";
 import PopoverMenuItem from "./PopoverMenuItem";

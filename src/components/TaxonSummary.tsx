@@ -1,4 +1,4 @@
-import { TaxonSummarySection } from "../datatypes/TaxonSummarySection";
+import { TaxonSummarySection } from "../model_views/TaxonSummarySection";
 
 function TaxonSummary(props: { sections: TaxonSummarySection[] }) {
     return (
