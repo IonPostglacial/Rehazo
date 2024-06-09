@@ -10,13 +10,17 @@ import { Document } from "../datatypes/Document";
 import Navbar from "../components/Navbar";
 import PictureBox from "../components/PictureBox";
 import TaxonForm from "../components/TaxonForm";
-import BookInfo from "../components/BookInfo";
+import BookInfoSection from "../components/BookInfoSection";
 import BreadCrumbs from "../components/BreadCrumbs";
 import IconMenu from "../components/IconMenu";
 import TaxonSummary from "../components/TaxonSummary";
 import { TaxonData } from "../datatypes/TaxonData";
 import { ViewMenuData } from "../datatypes/ViewMenuData";
 import { BreadCrumbData } from "../datatypes/BreadCrumbData";
+import { BookInfo } from "../datatypes/BookInfo";
+import { Picture } from "../datatypes/Picture";
+import { DescriptorIconData } from "../datatypes/DescriptorIconData";
+import { TaxonSummarySection } from "../datatypes/TaxonSummarySection";
 
 type TaxonViewData = { 
     currentDatasetName: string, 
@@ -25,6 +29,10 @@ type TaxonViewData = {
     taxonData: TaxonData,
     views: ViewMenuData[],
     descriptorBreadcrumbs: BreadCrumbData[],
+    bookInfos: BookInfo[],
+    pictures: Picture[],
+    descriptorsIconData: DescriptorIconData[],
+    summarySections: TaxonSummarySection[],
 };
 
 export async function loader(): Promise<TaxonViewData> {
@@ -55,11 +63,38 @@ export async function loader(): Promise<TaxonViewData> {
         {label: "Flower", url: "#"}, 
         {label: "Flowering", url: "#"},
     ];
-    return { currentDatasetName, datasets, tree, taxonData, views, descriptorBreadcrumbs };
+    const bookInfos = [
+        { name: "Flores de Madagascar et Comores", details: "blabla", fasc: 1, page: 1 },
+        { name: "Commentaires de voyages de Henry", details: "toto blaba", fasc: 3, page: 42 },
+    ];
+    const pictures = [
+        { name: "Tree", url: "toto.png", hubUrl: "tata.png" },
+        { name: "Flower", url: "flower.png", hubUrl: "flower.png" },
+    ];
+    const descriptorsIconData = [
+        { url: "", pictureSource: "", name: "Fruit", name_tr: [], isSelected: true },
+        { url: "", pictureSource: "", name: "Flower", name_tr: [], isSelected: false },
+    ];
+    const summarySections: TaxonSummarySection[] = [
+        { name: "Flower", name_tr: [], color: "pink", 
+            descriptors: [
+                { name: "petales", name_tr: [], 
+                    states: [
+                        { name: "opposés", name_tr: [] },
+                    ],
+                }
+            ],
+        },
+    ];
+    return { currentDatasetName, datasets, tree, taxonData, views, descriptorBreadcrumbs, bookInfos, pictures, descriptorsIconData, summarySections };
 }
 
 function TaxonView() {
-    const { currentDatasetName, datasets, tree, taxonData, views, descriptorBreadcrumbs } = useLoaderData() as TaxonViewData;
+    const { 
+        currentDatasetName, 
+        datasets, tree, taxonData, views, descriptorBreadcrumbs, 
+        bookInfos, pictures, descriptorsIconData, summarySections,
+    } = useLoaderData() as TaxonViewData;
     const unselectedPanels = [{name: "yo"}];
     return (
         <HBox className="responsive-850">
@@ -96,10 +131,12 @@ function TaxonView() {
                         </HBox>
                         <details open className="separated-bottom">
                             <summary className="padded">Pictures</summary>
-                            <PictureBox></PictureBox>
+                            <PictureBox picture={pictures[0]} index={1} count={pictures.length}></PictureBox>
                         </details>
                         <TaxonForm taxonData={taxonData}></TaxonForm>
-                        <BookInfo></BookInfo>
+                        {bookInfos.map(bookinfo =>
+                            <BookInfoSection bookinfo={bookinfo}></BookInfoSection>
+                        )}
                     </VBox>
                     <VBox v-if="isPanelVisible('Descriptors')" className="vertical-scroll flex-fill">
                         <HBox className="vertical-align padded separated-bottom fixed-to-top">
@@ -122,7 +159,7 @@ function TaxonView() {
                                 <HBox className="vertical-align relative">
                                     <input type="search" name="filter-descriptors" id="filter-descriptors" className="flex-fill"
                                         placeholder="filter descriptors" />
-                                    <FontAwesomeIcon icon={faSearch}/>
+                                    <FontAwesomeIcon icon={faSearch} className="search-icon"/>
                                 </HBox>
                                 <HBox v-if="descriptorsBreadCrumb.length > 0" className="vertical-align relative"
                                     hx-boost="true">
@@ -132,7 +169,7 @@ function TaxonView() {
                                     <BreadCrumbs branch={descriptorBreadcrumbs}></BreadCrumbs>
                                 </HBox>
                             </VBox>
-                            <IconMenu v-if="selectedTaxon"></IconMenu>
+                            <IconMenu descriptors={descriptorsIconData}></IconMenu>
                         </VBox>
                     </VBox>
                     <VBox v-if="isPanelVisible('Summary')" className="vertical-scroll flex-fill">
@@ -151,7 +188,7 @@ function TaxonView() {
                                 </a>
                             </div>
                         </HBox>
-                        <TaxonSummary></TaxonSummary>
+                        <TaxonSummary sections={summarySections}></TaxonSummary>
                     </VBox>
                 </HBox>
             </VBox>
