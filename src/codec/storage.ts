@@ -1,4 +1,4 @@
-import { createStore } from "tinybase/lib/types/store/with-schemas";
+import { createStore } from "tinybase/with-schemas";
 
 export function createStorage() {
     return createStore().setTablesSchema({
@@ -110,3 +110,5 @@ export function createStorage() {
         },
     });
 }
+
+export type DataStore = ReturnType<typeof createStorage>;

@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         loader: rootLoader,
     },
     { 
-        path: "/ds/:dsId/taxons/:taxonId?", 
+        path: "/ds/:datasetId/taxons/:taxonId?", 
         element: <TaxonView />,
         loader: taxonsLoader,
     },

@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import HBox from "../components/HBox";
 import MainToolbar from "../components/MainToolbar";
 import VBox from "../components/VBox";
@@ -21,6 +21,9 @@ import { BookInfo } from "../model_views/BookInfo";
 import { Picture } from "../model_views/Picture";
 import { DescriptorIconData } from "../model_views/DescriptorIconData";
 import { TaxonSummarySection } from "../model_views/TaxonSummarySection";
+import { createStorage } from "../codec/storage";
+import { load } from "../codec/fs-storage";
+import { loadToDatabase } from "../codec/loadToDatabase";
 
 type TaxonViewData = { 
     currentDatasetName: string, 
@@ -35,7 +38,16 @@ type TaxonViewData = {
     summarySections: TaxonSummarySection[],
 };
 
+type TaxonRouteParameters = {
+    datasetId: string,
+    taxonId: string,
+};
+
 export async function loader(): Promise<TaxonViewData> {
+    const params = useParams() as TaxonRouteParameters;
+    const ds = await load(params.datasetId);
+    const store = createStorage();
+    loadToDatabase(ds, store);
     const datasets = [
         { name: "Baobabs", lastModified: "2021-04-21" },
         { name: "Plantes", lastModified: "2022-04-21" },
